@@ -60,14 +60,8 @@ func FormatNumber(value interface{}, precision int, thousand string, decimalStr 
 	switch v.Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		x = fmt.Sprintf("%d", v.Int())
-		if precision > 0 {
-			x += "." + strings.Repeat("0", precision)
-		}
 	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
 		x = fmt.Sprintf("%d", v.Uint())
-		if precision > 0 {
-			x += "." + strings.Repeat("0", precision)
-		}
 	case reflect.Float32, reflect.Float64:
 		x = fmt.Sprintf(fmt.Sprintf("%%.%df", precision), v.Float())
 	case reflect.Struct:
@@ -123,9 +117,6 @@ func FormatNumberInt(x int, precision int, thousand string, decimalStr string) s
 		result = "-" + result
 	}
 
-	if precision > 0 {
-		result += decimalStr + strings.Repeat("0", precision)
-	}
 
 	return result
 }
